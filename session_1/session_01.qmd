@@ -1,0 +1,499 @@
+---
+title: "PhD Plus<br>Data Literacy in R"
+subtitle: "Session 1: An Introduction to R"
+author: "Clay Ford"
+institute: "University of Virginia Library, StatLab"
+format:
+  revealjs:
+    embed-resources: true
+    smaller: true
+execute:
+  echo: true
+---
+
+## Why R?
+
+- Designed to investigate and analyze data.
+- Free and open source.
+- In active development; always evolving and improving.
+- Lots of resources available for learning R.
+- Welcoming and supportive community.
+
+## R and RStudio
+
+- I recommend you use R with RStudio Desktop.
+- R and RStudio are separate programs. Do not need RStudio to use R, but it sure makes it easier.
+- R is supported by The R Foundation, a not-for-profit organization.
+- RStudio Desktop is a free product provided by Posit, an "open source data science company".
+
+
+## Installing R and RStudio
+
+This page provides instructions for downloading and installing R and RStudio.
+
+<https://clayford.github.io/r_install/>
+
+Once R and RStudio are both installed, **you only need to run RStudio**.
+
+
+## Functions
+
+- You tell R what to do using _functions_. For example, to take the square root of 2 use the `sqrt()` function. The number 2 is the function _argument_.
+
+```{r}
+sqrt(2)
+```
+
+- Functions can have multiple _arguments_. For example, the `round()` function has two arguments: the value to round and the number of digits to round to.
+
+```{r}
+round(sqrt(2), digits = 3)
+```
+
+Notice we used `sqrt(2)` as the input to `round()`.
+
+## Assignment
+
+We often want to save a result instead of viewing it in the Console. We can do this with the _assignment operator_: `<-`
+
+```{r}
+s2 <- sqrt(2)
+```
+
+::: callout-tip
+Use `Alt + -` (Win) or `Option + -` (Mac) in RStudio to quickly insert `<-`. You can also use `=` for assignment.
+:::
+
+Now we can work with the _named object_.
+
+```{r}
+round(s2, 4)
+```
+
+Notice we didn't have to use `digits = 4`. We can use _unnamed arguments_ if we use them in the correct order. 
+
+## Naming rules
+
+R is _case sensitive_. "Dat", "DAT", and "dat" are all considered different names.
+
+You can name an object in R almost anything you want, but it cannot...
+
+- start with a number
+- use certain special symbols, like ^, !, $, @, +, -, /, or *
+- contain spaces
+
+However you can use underscores and periods.
+
+::: {.callout-note}
+Strictly speaking, you can break all the rules above by surrounding the name in backticks (``), but that's not recommended.
+:::
+
+
+## Working in the console
+
+Use your up/down arrow keys to recall previous commands.
+
+Hit `Ctrl + Up` (Win)	or `Cmd + Up` (Mac) for a pop-up list of previous commands. 
+
+Hit `Ctrl + L` to clear the console.
+
+Hit `Esc` if you get the continuation prompt `+`. This means you have submitted an incomplete command. You can also complete the command, which is usually a closing parenthesis. 
+
+## R scripts
+
+In addition to running R code in the console, we can enter it into a _R script_ and save the code. A R script is a text file that contains R code. 
+
+Start a new R script by going to File...New File...R Script.
+
+Run code in a R script by putting your cursor in the code and hitting `Ctrl + Enter` (Win) or `Cmd + Return` (Mac)
+
+Add comments in a R script by prefacing text with a pound sign, `#`.
+
+## Built-in datasets
+
+R comes with many _datasets_ to help us learn R. We can load them using the `data()` function. For example, to load the "trees" data set:
+
+```{r}
+data(trees)
+```
+
+This loads a _data frame_ called "trees" into memory, or the _Global Environment_.
+
+A data frame is a rectangular data structure where rows represent _observations_ and columns represent _variables_. This is a common data structure. 
+
+To see all available data sets, go to the Packages tab in RStudio, in the search field enter "datasets", and click the "datasets" link.
+
+## A few functions for data frames
+
+Calling `summary()` on a data frame returns summary statistics of numeric columns.
+
+```{r}
+summary(trees)
+```
+
+The `str()` function tells us about the structure of the data frame.
+
+```{r}
+str(trees)
+```
+
+Calling `plot()` on a data frame returns pairwise scatter plots (not displayed)
+
+```{r eval=FALSE}
+plot(trees)
+```
+
+## Working with columns in a data frame
+
+Use the `$` operator to extract and work with columns of a data frame. These columns are called _vectors_.
+
+```{r}
+trees$Girth
+```
+
+We can enter columns directly into functions. For example:
+
+```{r}
+summary(trees$Girth)
+mean(trees$Girth)
+hist(trees$Girth)
+```
+
+## Working with two columns
+
+We can work directly with two columns. For example, create a scatter plot of Volume versus Girth.
+
+```{r}
+plot(trees$Volume, trees$Girth)
+```
+
+Summarize the linear association in the plot by calculating correlation using the `cor()` function.
+
+```{r}
+cor(trees$Volume, trees$Girth)
+```
+
+## Comparison
+
+A fundamental concept in data analysis is _comparison_. Comparisons return `TRUE` or `FALSE`.
+
+```{r}
+x <- 12
+y <- 8
+x > y
+```
+
+All comparison operators:
+
+```
+x < y
+x > y
+x <= y
+x >= y
+x == y
+x != y
+```
+
+This can be done with columns of a data frame, or _vectors_.
+
+```{r}
+trees$Girth > 13
+```
+
+
+## TRUE/FALSE values
+
+TRUE and FALSE values, called _logical_ values, are also treated as the numbers 1 and 0, respectively. This allows us to count TRUE values.
+
+How many trees have girth greater than 13?
+
+```{r}
+sum(trees$Girth > 13)
+```
+
+What proportion of trees have girth greater than 13?
+
+```{r}
+mean(trees$Girth > 13)
+```
+
+How many trees are between 70 and 80 feet tall?
+
+```{r}
+sum(trees$Height > 70 & trees$Height < 80)
+```
+
+`&` (AND) and `|` (OR) are _logical_ operators. 
+
+## Add/Remove columns to a data frame
+
+To add a column to a data frame, type the new name after the `$` operator and assign the value.
+
+For example, add a column called "Height_m" that contains height of tree in meters by dividing `trees$Height` by 3.281:
+
+```{r}
+trees$Height_m <- trees$Height/3.281
+str(trees)
+```
+
+To remove a column, assign it the value NULL
+
+```{r eval=FALSE}
+trees$Height_m <- NULL
+```
+
+
+## Missing data
+
+Missing data in R is represented by `NA` (Not Available). The airquality dataset contains missing data. The Ozone column has 37 missing values.
+
+```{r}
+data(airquality)
+summary(airquality$Ozone)
+```
+
+Certain functions return `NA` if any data are missing. For example, the `mean()` function:
+
+```{r}
+mean(airquality$Ozone)
+```
+
+Set `na.rm = TRUE` to calculate the mean with the available data:
+
+```{r}
+mean(airquality$Ozone, na.rm = TRUE)
+```
+
+## The `is.na()` function
+
+The `is.na()` function indicates which elements are missing by returning TRUE or FALSE. 
+
+For example, the 5th value of Ozone is missing. Notice the 5th value below is TRUE.
+
+```{r}
+head(airquality$Ozone)
+head(is.na(airquality$Ozone))
+```
+
+The `!` operator means NOT. We can use it to find values that are NOT missing.
+
+```{r}
+head(!is.na(airquality$Ozone))
+```
+
+And we can use the result of `is.na()` to calculate summaries about missing values. For example, what proportion of Ozone values is not missing?
+
+```{r}
+mean(!is.na(airquality$Ozone))
+```
+
+## Vectors
+
+A vector is a one-dimensional data structure consisting of the same data type (number, character, logical). We can create vectors using the `c()` function.
+
+```{r}
+# numeric
+ages <- c(29, 25, 28, 45, 33)
+# character
+gender <- c("m", "m", "f", "f", "m")
+```
+
+We can use the `data.frame()` function to create data frames from vectors.
+
+```{r}
+d <- data.frame(ages, gender)
+d
+```
+
+Note: the vectors need to be the same _length_.
+
+## Subsetting with brackets
+
+_Subsetting_ means selecting rows of a data frame or elements of a vector that meet a certain condition. We can subset vectors and data frames using subsetting brackets. Only values where the result is TRUE are returned.
+
+Show only _values_ in the _vector_ where Volume is greater than 50:
+
+```{r}
+trees$Volume[trees$Volume > 50]
+```
+
+Show only _rows_ in the _data frame_ where Volume is greater than 50. Notice we need to add the comma! That means select all columns
+
+```{r}
+trees[trees$Volume > 55, ]
+```
+
+## Subsetting with brackets
+
+We can also subset using numeric vectors to select values/rows.
+
+```{r}
+trees$Volume[c(2, 5, 7)]
+trees$Volume[c(1, 1, 1)]
+trees[c(2, 5, 7),c(1, 3)] # select columns 1 and 3
+```
+
+## Subsetting with `subset()`
+
+The `subset()` function is an alternative to using subsetting brackets. Call it on the data frame, and then after the comma define the condition to subset on.
+
+```{r}
+subset(trees, Volume > 55)
+subset(airquality, Ozone < 7)
+subset(airquality, is.na(Solar.R))
+```
+
+Notice we do not need to use the `$` operator to refer to columns in the data frame. 
+
+## Group summaries
+
+The `tapply()` and `aggregate()` functions allows us to calculate summaries by group. For example, find the the mean temperature for each month in the airquality data.
+
+In this case, `tapply()` returns a vector while `aggregate()` returns a data frame.
+
+```{r}
+tapply(airquality$Temp, airquality$Month, mean)
+
+aggregate(Temp ~ Month, data = airquality, mean) # always returns data frame
+```
+
+`aggregate()` uses formula notation. Read `Temp ~ Month` as "Temp grouped by Month".
+
+## Multiple group summaries
+
+Two use more than one group, wrap the grouping variables in `list()` when using `tapply()`. Notice the result is output as a table.
+
+```{r}
+tapply(mtcars$mpg, list(mtcars$cyl, mtcars$am), mean)
+```
+
+Two use more than one group, simply "add" the variables on the right side of the formula using `aggregate()`. 
+
+
+```{r}
+aggregate(mpg ~ cyl + am, data = mtcars, mean)
+```
+
+These are mean miles per gallon for cars grouped by number of cylinders and whether or not they have automatic transmission.
+
+## Factors
+
+A _factor_ is a categorical variable with fixed levels. For example, t-shirt sizes such as S, M, L, and XL.
+
+```{r}
+size <- c("XL", "L", "M", "L", "M")
+table(size)
+```
+
+Convert to factor to set levels and their order.
+
+```{r}
+sizeF <- factor(size, levels = c("S", "M", "L", "XL"))
+table(sizeF)
+```
+
+## Setting the working directory
+
+Your _working directory_ is where R looks for files or outputs files (unless you specify a path). It is listed in the Console header. You can also request it with the `getwd()` function.
+
+If you have ever saved work on your computer to a specific location, then you understand the concept of a working directory.
+
+Go to Session...Set Working Directory...Choose Directory... in RStudio to set your working directory. 
+
+You can also use the `setwd()` function with a path specific to your computer. For example, to set my working directory to my Desktop I would run the following:
+
+```{r eval=FALSE}
+setwd("/Users/jcf2d/Desktop/")
+```
+
+Hitting Tab after `/` or `~/` in RStudio will open a list of available folders and allow you to drill up/down to the desired directory.
+
+## Importing CSV files
+
+CSV files are commonly used for storing data. They are human readable and work on any operating system. They are text files and can be viewed in Excel, Google Sheets, and text editors.
+
+To import a CSV file into R, use the `read.csv()` function. For example, to import a file named "popular_baby_names_nyc.csv" (located in your working directory) into R:
+
+```{r}
+baby_names <- read.csv("popular_baby_names_nyc.csv")
+```
+
+Notice we need to assign the result to a name. Any name will do as long as it follows R's naming conventions.
+
+## Saving a single object
+
+We can save a single object using the `saveRDS()` function. Give the file name an "rds" extension. For example, the following code saves the trees data frame to the current working directory as "trees.rds".
+
+```{r eval=FALSE}
+saveRDS(trees, file = "trees.rds")
+```
+
+To load the file, use the `readRDS()` function. Notice we need to assign the result of the function to a name. The name does not have to match the name of the rds file. 
+
+```{r eval=FALSE}
+treeData <- readRDS("trees.rds")
+```
+
+## Saving two or more objects
+
+We can save two or more objects as a single file using the `save()` function. Give the file name an "Rdata" extension. For example, the following code saves the trees and trees2 data frames to the current working directory as "tree_data.Rdata".
+
+```{r eval=FALSE}
+save(trees, trees2, file = "tree_data.Rdata")
+```
+
+To load the two objects back into the Global Environment, use the `load()` function.
+
+```{r eval=FALSE}
+load("tree_data.Rdata")
+```
+
+Note: if there are objects currently in the Global Environment named "trees" and "trees2", they will be overwritten.
+
+## Saving the entire workspace
+
+We can save the entire workspace using the `save.image()` function. Simply provide the file name with an "Rdata" extension. Unless a path is specified, it will be saved in your current working directory. For example, the following code saves the entire workspace (i.e., all objects in the Global Environment) to the current working directory as "my_workspace.Rdata".
+
+```{r eval=FALSE}
+save.image(file = "my_workspace.RData")
+```
+
+To restore the workspace, use the `load()` function.
+
+```{r eval=FALSE}
+load("my_workspace.Rdata")
+```
+
+Note: if there are any objects currently in the Global Environment with the same name as the objects in "my_workspace.Rdata", they will be overwritten.
+
+## Installing packages
+
+All functions belong to _packages_. The `read.csv()` function is in the `{utils}` package. R comes with 30 packages (called "base R"), but there are thousands of user-contributed packages.
+
+Example: `{ggplot2}` is a popular package that adds functions for creating graphs in a different way than what base R provides
+
+To use functions in a package, the package must be installed and loaded. (They're free.) You _install_ a package once. You _load_ a package whenever you want to use its functions. 
+
+To install a package, go to Tools...Install Packages... in RStudio. Or use the `install.packages()` function. To load a package, use the `library()` function. For example:
+
+```{r eval=FALSE}
+install.packages("ggplot2") # just need to do once
+library(ggplot2)
+```
+
+Now `{ggplot2}` functions are available to use.
+
+
+## Resources
+
+- [fasteR: Fast Lane to Learning R!](https://github.com/matloff/fasteR)
+
+- [Ch 2 of Hands on Programming with R](https://rstudio-education.github.io/hopr/basics.html)
+
+- [Chs 1 and 2 of R for Data Science](https://r4ds.hadley.nz/) (Emphasizes the Tidyverse dialect of R)
+
+- [Getting Started in R: Tinyverse Edition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf)
+
+- [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) (The original tutorial from 1990!)
+
+- [RStudio keyboard shortcuts](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE).
