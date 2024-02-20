@@ -1,9 +1,12 @@
 ---
-title: "PhD Plus, Data Literacy: R (Spring 2024)"
+title: "PhD Plus, Data Literacy: R"
+subtitle: "Spring 2024"
 format: 
   html:
     embed-resources: true
 ---
+
+Instructor: Clay Ford, `jcf2d@virginia.edu`
 
 Class is every Wednesday from Feb 21 to April 3, 2:00 - 4:00 PM (except March 6). All sessions will meet in person. There is no virtual option. We will meet in the Brown Science and Engineering Library Classroom, room 133, located in [Clark Hall](https://www.google.com/maps/d/embed?mid=16NAmuLNOnakjOQTRs6uem2oTW08&hl=en&ll=38.03311000000001%2C-78.507831&z=17). When you enter Clark Hall, go through the mural hall, into the library and take a left at the circulation desk. Room 133 is the first room on the left. In fact, there’s a large sign above the entryway that says “CLASSROOM”.
 
