@@ -18,6 +18,7 @@ You will receive credit for the class if you attend at least 5 of the 6 sessions
 
 The first step to developing data literacy is learning a computer program to help you analyze and visualize data. In the first session we’ll get you up and running with R, a computing environment and programming language designed specifically for data analysis. We’ll assume no prior knowledge of R and start from the very beginning. We’ll work with small data sets to demonstrate how R works and how it can help us quickly explore and investigate data. This session is meant to get you excited about using R and provides the computational foundations for the sessions that follow!
 
+
 ## Session 2: Preparing Data for Analysis (Feb 28)
 
 Whether we generate our own data through an experiment or use data collected by someone else, we almost always need to pre-process the data before we can analyze it. In this session we work with real-life data sets to introduce various strategies for cleaning and preparing data. Topics will include importing data, merging data, using regular expressions to identify text patterns, working with factors, and more. If you don’t know what that stuff means, this session is for you. 
