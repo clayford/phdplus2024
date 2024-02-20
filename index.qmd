@@ -1,0 +1,35 @@
+---
+title: "PhD Plus, Data Literacy: R (Spring 2024)"
+format: 
+  html:
+    embed-resources: true
+---
+
+Class is every Wednesday from Feb 21 to April 3, 2:00 - 4:00 PM. All sessions will meet in person. There is no virtual option. We will meet in the Brown Science and Engineering Library Classroom, room 133, located in [Clark Hall](https://www.google.com/maps/d/embed?mid=16NAmuLNOnakjOQTRs6uem2oTW08&hl=en&ll=38.03311000000001%2C-78.507831&z=17). When you enter Clark Hall, go through the mural hall, into the library and take a left at the circulation desk. Room 133 is the first room on the left. In fact, there’s a large sign above the entryway that says “CLASSROOM”.
+
+To participate in the class, you will need to bring a laptop computer with R and RStudio installed. Fortunately, these programs are free and relatively painless to install. I have a web page that provides instructions for installing both programs: <https://clayford.github.io/r_install/>  (See the first two sections.) I recommend installing these programs before coming to class.
+
+## Session 1: Getting Started with R (Feb 21)
+
+The first step to developing data literacy is learning a computer program to help you analyze and visualize data. In the first session we’ll get you up and running with R, a computing environment and programming language designed specifically for data analysis. We’ll assume no prior knowledge of R and start from the very beginning. We’ll work with small data sets to demonstrate how R works and how it can help us quickly explore and investigate data. This session is meant to get you excited about using R and provides the computational foundations for the sessions that follow!
+
+## Session 2: Preparing Data for Analysis (Feb 28)
+
+Whether we generate our own data through an experiment or use data collected by someone else, we almost always need to pre-process the data before we can analyze it. In this session we work with real-life data sets to introduce various strategies for cleaning and preparing data. Topics will include importing data, merging data, using regular expressions to identify text patterns, working with factors, and more. If you don’t know what that stuff means, this session is for you. 
+
+## Session 3: Visualizing Data (March 13)
+
+Visualizing data allows us to look for patterns and associations in data as well as identify unusual observations. R is especially good for this. In this session we’ll take a deep dive into the ggplot2 package to learn how to rapidly create insightful data visualizations. We’ll also briefly introduce the plotly package for making interactive visualizations. In addition, we’ll address some of the judgments we must make when visualizing data and offer some advice on best practices.
+
+## Session 4: Essential Statistics (March 20)
+
+Data literacy includes statistical literacy. This means being able to calculate and interpret statistical summaries, estimate uncertainty, evaluate assumptions, and avoid falling prey to common statistical errors. In this session we learn how to use R to carry out essential statistical analyses such as comparing proportions and means, calculating percentiles, creating cross tabulations, estimating uncertainty, and carrying out hypothesis tests. We emphasize application and interpretation with minimal math. In addition, we highlight sources of common statistical mistakes and how to avoid them.
+
+## Session 5: Models and Machine Learning (March 27)
+
+One of the reasons we collect and analyze data is to attempt to quantify relationships and/or make predictions. For example, how much can we expect the value of our home to increase if we add 500 square feet to it? Or can we use laser scanner images of an eye’s background to predict whether someone has glaucoma or not? In this session we cover some basic ideas of regression models and selected machine learning algorithms, and demonstrate how to implement them in R. No knowledge of advanced mathematics is required. The goal is to make you a more informed consumer of results that use these methods.
+
+## Session 6: Creating Deliverables (April 3)
+
+Once we have used R to pre-process, summarize, visualize, and model our data, we usually want to communicate the results to an audience in the form of a deliverable. This can be a document, a presentation, a website, a book, a dashboard, or even an interactive application. In the final session we learn how to use R and RStudio to create final products such as these so we can effectively present results and communicate what we’ve learned from our data analysis. The ideas and techniques learned in this session will serve you well no matter your field of study or level of statistical expertise.
+
