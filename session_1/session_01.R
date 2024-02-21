@@ -120,10 +120,11 @@ mean(trees$Height == 80)
 sum(trees$Height != 80)
 mean(trees$Height != 80)
 
-# which rows are T/F
-# which rows are T/F
+# any rows T/F?
 any(trees$Height < 69)
+# all rows T/F?
 all(trees$Height < 69)
+# which rows T/F?
 which(trees$Height < 69)
 i <- which(trees$Height < 69) # vector
 
@@ -233,6 +234,11 @@ help(points)
 
 # source: https://catalog.data.gov/dataset/popular-baby-names
 # set working directory
+
+# session...set working directory...choose directory...
+# setwd(""); hit tab key to browse current directory and find folders/files
+
+# get data:
 # https://bit.ly/baby_names_nyc
 
 baby_names <- read.csv("popular_baby_names_nyc.csv")
@@ -245,7 +251,10 @@ names(baby_names)
 names(baby_names)[c(1,4)] <- c("Year", "Name")
 names(baby_names)
 
-# 2012 vs 2015 for names (all caps versus sentence case)
+# View(baby_names)
+# Notice 2012 vs 2015 for names (all caps versus sentence case)
+
+# explore data
 subset(baby_names, Rank == 1) 
 subset(baby_names, Rank == 1 & Year == 2019) 
 subset(baby_names, Rank %in% 1:5 & Year == 2019 & Ethnicity == "HISPANIC") 
@@ -273,10 +282,9 @@ plot(addison$Year, addison$Rank, type = "l")
 
 # regular expression to find names with Capital letters in other position
 # besides first position.
-i <- grep("(?<=[a-z ])[A-Z]", baby_names$Name, perl = TRUE)
-baby_names$Name[i]
 
-
+# i <- grep("(?<=[a-z ])[A-Z]", baby_names$Name, perl = TRUE)
+# baby_names$Name[i]
 
 
 # Saving objects
@@ -307,7 +315,7 @@ load("my_workspace.Rdata")
 # R packages
 # all functions belong to packages
 # R comes with 30 packages
-# Can install packages from CRAN
+# Can install additional packages from CRAN
 
 install.packages("car")
 library(car)
@@ -359,15 +367,20 @@ top_n(airquality$Temp, n = 3)
 
 tapply(airquality$Temp, airquality$Month, top_n, n = 3)
 
+# probably won't get to this....
 
-# creating/simulating data
+# basic example of simulating data
 die <- 1:6
 die
 sample(x = die, size = 1)
 sample(x = die, size = 10, replace = TRUE)
+# use set.seed(k), where k is integer, to reproduce "random" sample
+set.seed(2)
+sample(x = die, size = 10, replace = TRUE)
 rolls <- sample(x = die, size = 10000, replace = TRUE)
 table(rolls)
 
+# set 3 and 4 to be twice as likely
 rolls <- sample(x = die, size = 10000, replace = TRUE, 
                 prob = c(1,1,2,2,1,1))
 table(rolls)
@@ -380,3 +393,4 @@ roll <- roll1 + roll2
 table(roll)
 barplot(table(roll))
 mean(roll >= 9)
+
