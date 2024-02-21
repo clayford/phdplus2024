@@ -18,7 +18,7 @@ You will receive credit for the class if you attend at least 5 of the 6 sessions
 
 The first step to developing data literacy is learning a computer program to help you analyze and visualize data. In the first session we’ll get you up and running with R, a computing environment and programming language designed specifically for data analysis. We’ll assume no prior knowledge of R and start from the very beginning. We’ll work with small data sets to demonstrate how R works and how it can help us quickly explore and investigate data. This session is meant to get you excited about using R and provides the computational foundations for the sessions that follow!
 
-[Download session files](https://github.com/clayford/phdplus2024/raw/main/session_1/session_01.zip) (zip file)
+[Download session 1 files](https://github.com/clayford/phdplus2024/raw/main/session_1/session_01.zip) (zip file)
 
 
 ## Session 2: Preparing Data for Analysis (Feb 28)
