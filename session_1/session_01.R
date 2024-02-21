@@ -121,12 +121,12 @@ sum(trees$Height != 80)
 mean(trees$Height != 80)
 
 # any rows T/F?
-any(trees$Height < 69)
+any(trees$Height < 70)
 # all rows T/F?
-all(trees$Height < 69)
+all(trees$Height < 70)
 # which rows T/F?
-which(trees$Height < 69)
-i <- which(trees$Height < 69) # vector
+which(trees$Height < 70)
+i <- which(trees$Height < 70) # vector
 
 # vectors; one dimension data of same type
 # columns of data frames are (usually) vectors
@@ -141,8 +141,8 @@ trees$Height < 69
 
 # subsetting brackets
 trees[i,]
-trees[trees$Height < 69,]
-trees[trees$Height < 69, c("Height", "Volume")]
+trees[trees$Height < 70,]
+trees[trees$Height < 70, c("Height", "Volume")]
 
 # can use with vectors
 trees$Volume[trees$Volume > 50]
@@ -154,9 +154,9 @@ trees$Volume[c(1, 1, 1)]
 trees[c(2, 5, 7), c(1, 3)] # select columns 1 and 3
 
 # using subset
-subset(trees, Height < 69)
-subset(trees, Height < 69, c(1,3))
-trees2 <- subset(trees, Height < 69, c("Girth", "Volume"))
+subset(trees, Height < 70)
+subset(trees, Height < 70, c(1,3))
+trees2 <- subset(trees, Height < 70, c("Girth", "Volume"))
 
 # load data with NAs
 data(airquality)
