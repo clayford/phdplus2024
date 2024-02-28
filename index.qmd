@@ -25,6 +25,9 @@ The first step to developing data literacy is learning a computer program to hel
 
 Whether we generate our own data through an experiment or use data collected by someone else, we almost always need to pre-process the data before we can analyze it. In this session we work with real-life data sets to introduce various strategies for cleaning and preparing data. Topics will include importing data, merging data, using regular expressions to identify text patterns, working with factors, and more. If you don’t know what that stuff means, this session is for you. 
 
+[Download session 2 files](https://github.com/clayford/phdplus2024/raw/main/session_2/session_02.zip) (zip file)
+
+
 ## Session 3: Visualizing Data (March 13)
 
 Visualizing data allows us to look for patterns and associations in data as well as identify unusual observations. R is especially good for this. In this session we’ll take a deep dive into the ggplot2 package to learn how to rapidly create insightful data visualizations. We’ll also briefly introduce the plotly package for making interactive visualizations. In addition, we’ll address some of the judgments we must make when visualizing data and offer some advice on best practices.
