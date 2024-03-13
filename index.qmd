@@ -32,6 +32,8 @@ Whether we generate our own data through an experiment or use data collected by 
 
 Visualizing data allows us to look for patterns and associations in data as well as identify unusual observations. R is especially good for this. In this session we’ll take a deep dive into the ggplot2 package to learn how to rapidly create insightful data visualizations. We’ll also briefly introduce the plotly package for making interactive visualizations. In addition, we’ll address some of the judgments we must make when visualizing data and offer some advice on best practices.
 
+[Download session 3 files](https://github.com/clayford/phdplus2024/raw/main/session_3/session_03.zip) (zip file)
+
 ## Session 4: Essential Statistics (March 20)
 
 Data literacy includes statistical literacy. This means being able to calculate and interpret statistical summaries, estimate uncertainty, evaluate assumptions, and avoid falling prey to common statistical errors. In this session we learn how to use R to carry out essential statistical analyses such as comparing proportions and means, calculating percentiles, creating cross tabulations, estimating uncertainty, and carrying out hypothesis tests. We emphasize application and interpretation with minimal math. In addition, we highlight sources of common statistical mistakes and how to avoid them.
