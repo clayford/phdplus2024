@@ -44,6 +44,8 @@ Data literacy includes statistical literacy. This means being able to calculate 
 
 One of the reasons we collect and analyze data is to attempt to quantify relationships and/or make predictions. For example, how much can we expect the value of our home to increase if we add 500 square feet to it? Or can we use laser scanner images of an eye’s background to predict whether someone has glaucoma or not? In this session we cover some basic ideas of regression models and selected machine learning algorithms, and demonstrate how to implement them in R. No knowledge of advanced mathematics is required. The goal is to make you a more informed consumer of results that use these methods.
 
+[Download session 5 files](https://github.com/clayford/phdplus2024/raw/main/session_5/session_05.zip) (zip file)
+
 ## Session 6: Creating Deliverables (April 3)
 
 Once we have used R to pre-process, summarize, visualize, and model our data, we usually want to communicate the results to an audience in the form of a deliverable. This can be a document, a presentation, a website, a book, a dashboard, or even an interactive application. In the final session we learn how to use R and RStudio to create final products such as these so we can effectively present results and communicate what we’ve learned from our data analysis. The ideas and techniques learned in this session will serve you well no matter your field of study or level of statistical expertise.
