@@ -50,3 +50,11 @@ One of the reasons we collect and analyze data is to attempt to quantify relatio
 
 Once we have used R to pre-process, summarize, visualize, and model our data, we usually want to communicate the results to an audience in the form of a deliverable. This can be a document, a presentation, a website, a book, a dashboard, or even an interactive application. In the final session we learn how to use R and RStudio to create final products such as these so we can effectively present results and communicate what we’ve learned from our data analysis. The ideas and techniques learned in this session will serve you well no matter your field of study or level of statistical expertise.
 
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) (online book)
+- [R Markdown Gallery](https://rmarkdown.rstudio.com/gallery.html)   
+- [R Markdown Cheatsheet](https://rstudio.github.io/cheatsheets/rmarkdown.pdf) (PDF)
+- [Get Started with Quarto](https://www.youtube.com/watch?v=_f3latmOhew) (YouTube)
+- [Quarto web site](https://quarto.org/)
+- [Quarto Cheatsheet](https://rstudio.github.io/cheatsheets/quarto.pdf) (PDF)
+
+
