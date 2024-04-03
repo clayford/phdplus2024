@@ -1,0 +1,129 @@
+---
+title: "Albemarle Real Estate"
+author: "Clay Ford"
+date: "2024-04-02"
+output: 
+  html_document:
+    theme: readable
+    highlight: textmate
+    code_folding: hide
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+homes <- readRDS(url("https://github.com/clayford/phdplus2024/raw/main/data/albemarle_homes_2024-02-28.rds"))
+library(ggplot2)
+
+# NOTE: if any code chunks are cached (ie, cache = TRUE), then the resulting
+# HTML file is no longer self-contained.
+
+```
+
+## About the data
+
+This data was downloaded from Albemarle.org. [^1] All analyses were performed using the R statistical computing environment [@base], using version `r getRversion()` on `r Sys.Date()`.
+
+[^1]: Collected in February 2024.
+
+Below is a summary of the data, courtesy of the {modelsummary} package [@modelsummary].
+
+```{r}
+modelsummary::datasummary_skim(homes, type = "numeric")
+```
+
+## Home Prices
+
+Median total value and lot size by high school district.
+
+```{r}
+stats <- aggregate(cbind(totalvalue, lotsize) ~ hsdistrict, 
+                   data = homes, median)
+knitr::kable(stats, col.names = c("High School District", 
+                                  "Median Home Value", 
+                                  "Median Lot Size"), 
+             align = "lcc")
+```
+
+The current real estate tax rate in Albemarle County is \$.854 per hundred of assessed value [^2]. For example, a home valued at \$400,000 will owe the following:
+
+[^2]: As of 2023.
+
+$$ \frac{\$400,000}{100} \times \$0.854 = \$3,416 $$
+
+## Visualize Data
+
+Plot of total value versus finished square feet using ggplot2 [@ggplot2].
+
+```{r homes-scatter}
+ggplot(homes) +
+  aes(x = finsqft, y = totalvalue) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10() +
+  facet_wrap(~hsdistrict) +
+  labs(caption = "Note: axes on log10 scale.")
+```
+
+```{r echo=FALSE}
+wa <- tapply(homes$totalvalue, homes$hsdistrict, function(x)mean(x > 1e6))[3]
+```
+
+Over `r paste0(round(wa, 2) * 100, "%")` of homes in the Western Albemarle school district are assessed at over \$1,000,000.
+
+## Model total value
+
+We fit two models with finished square feet and high school district as predictors. The latter model includes an interaction.
+
+```{r echo=FALSE}
+m1 <- lm(log(totalvalue) ~ log(finsqft) + hsdistrict, data = homes)
+m2 <- lm(log(totalvalue) ~ log(finsqft) * hsdistrict, data = homes)
+```
+
+```{r echo=FALSE}
+modelsummary::modelsummary(list("model 1" = m1, "model 2" = m2),
+                           coef_rename = c("hsdistrictMonticello" = "Monticello", 
+                                           "hsdistrictWestern Albemarle" = "Western Albemarle"))
+
+```
+
+## Visualize Model
+
+Visualize the model using the ggeffects package [@ggeffects].
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggeffects)
+library(plotly)
+eDF <- ggpredict(m2, terms = c("finsqft[300:3000]", "hsdistrict"))
+p <- ggplot(eDF) +
+  aes(x = x, y = predicted, color = group) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = "Finished square feet", y = "Expected total value",
+       color = "HS District")
+ggplotly(p)
+```
+
+## Ages of Homes by HS district {.tabset}
+
+### Ablemarle
+
+```{r}
+hist(homes$age[homes$hsdistrict == "Albemarle"], main = "", xlab = "Age")
+```
+
+### Monticello
+
+```{r}
+hist(homes$age[homes$hsdistrict == "Monticello"], main = "", xlab = "Age")
+
+```
+
+### Western Albemarle
+
+```{r}
+hist(homes$age[homes$hsdistrict == "Western Albemarle"], main = "", xlab = "Age")
+
+```
+
+## References
