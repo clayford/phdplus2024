@@ -65,8 +65,6 @@ parcel_level <- read.csv("GIS_View_Redacted_ParcelInfo.txt",
 other_parcel <- read.csv("CityView_View_OtherParcelCharacteristics.txt", 
                          na.strings = c("NULL", "N/A"))
 
-# Look at Kala Somerville's data in View; explain card numbers
-
 # card_level list of variables to keep
 card_vars <- c("TMP", "CardType", "YearBuilt", "YearRemodeled", 
                "UseCode", "Condition", "FinSqFt", "Cooling", 
